@@ -1,8 +1,11 @@
-# git-switcher
+# git-user-switcher
+(abbreviated as gus)
 
- A Command Tool to Change Global Git Config. 
+ A Command Tool to Manage Global Git User. 
 
 ## Usage
+
+Using `gus -h` for help information.
 
 | Options                          | Description                                                  |
 | -------------------------------- | ------------------------------------------------------------ |
