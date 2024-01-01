@@ -2,7 +2,7 @@ import configparser
 import argparse
 
 import GlobalValue
-import FileAttribute
+import FileAttributeManage
 from CustomUtils import changeColor
 import CheckArguments
 
@@ -124,7 +124,7 @@ def PrintCustomSymbols():
             print('    ' + changeColor(gitConfig.get(section, 'symbol'), 'green') + ': ' + gitConfig.get(section, 'name') + ' <' + changeColor(gitConfig.get(section, 'email'), 'blue') + '>')
             flag = True
     if not flag:
-        print(changeColor('No Custom Symbols.', 'yellow'))
+        print(changeColor('\nNo Custom Symbols.', 'yellow'))
     else:
         print(changeColor('\nPrint Success.', 'green'))
 
@@ -215,6 +215,6 @@ def ChangeGitConfig(symbol):
         print(changeColor('No Such Symbol or Something Wrong With This Symble, Please Check It.', 'red'))
 
 if __name__ == '__main__':
-    removed_attributes = FileAttribute.detect_and_remove_attribute()
+    removed_attributes = FileAttributeManage.detect_and_remove_attribute()
     init_parser()
-    FileAttribute.add_removed_attribute(removed_attributes)
+    FileAttributeManage.add_removed_attribute(removed_attributes)

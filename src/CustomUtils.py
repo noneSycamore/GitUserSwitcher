@@ -1,3 +1,4 @@
+import platform
 
 def changeColor(text, color):
     """
@@ -19,3 +20,16 @@ def changeColor(text, color):
         return '\033[1;37m' + text + '\033[0m'
     else:
         return text
+
+def getOsName():
+    """
+    return OS name
+    """
+    if platform.system() == 'Windows':
+        return 'Windows'
+    elif platform.system() == 'Linux':
+        return 'Linux'
+    elif platform.system() == 'Darwin':
+        return 'Mac'
+    else:
+        return 'Unknown'

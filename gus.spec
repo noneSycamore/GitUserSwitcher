@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['src\\GitSwitcher.py'],
+    ['src\\main.py'],
     pathex=[],
     binaries=[],
     datas=[],
