@@ -12,3 +12,6 @@
 | -r REMOVE, --remove REMOVE       | Remove custom symbols.<br/>Example: --remove symbol          |
 | -e [EDIT ...], --edit [EDIT ...] | Edit custom symbols.<br/>Example: --edit symbol name email   |
 | -c CHANGE, --change CHANGE       | Change git user.<br/>Example: change symbol                  |
+
+## Other
+Config info is stored directly in the `.gitconfig` file.
