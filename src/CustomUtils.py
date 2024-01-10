@@ -1,5 +1,6 @@
 import platform
 
+
 def changeColor(text, color):
     """
     change 'help' text color using ANSI escape code
@@ -20,6 +21,7 @@ def changeColor(text, color):
         return '\033[1;37m' + text + '\033[0m'
     else:
         return text
+
 
 def getOsName():
     """

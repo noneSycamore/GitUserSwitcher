@@ -9,6 +9,7 @@ from CustomUtils import changeColor
 git_config_file_path = GlobalValue.getGitConfigFilePath()
 OS = GlobalValue.getOs()
 
+
 def RequestHighPrivilege(gitConfig):
     """
     请求管理员权限 - (unused)
@@ -31,9 +32,11 @@ def RequestHighPrivilege(gitConfig):
         print('Please run this script as administrator.')
         sys.exit(0)
 
+
 # 获取文件属性
 def get_file_attributes(filepath):
     return ctypes.windll.kernel32.GetFileAttributesW(filepath)
+
 
 # 设置文件属性
 def add_attribute(filepath, FILE_ATTRIBUTE):
@@ -42,12 +45,14 @@ def add_attribute(filepath, FILE_ATTRIBUTE):
         print(f'Failed to set attribute <{FILE_ATTRIBUTE}> for file \"{filepath}\".\nPlease add it manually.')
         sys.exit(0)
 
+
 # 移除文件属性
 def remove_attribute(filepath, FILE_ATTRIBUTE):
     ret = ctypes.windll.kernel32.SetFileAttributesW(filepath, get_file_attributes(filepath) & ~FILE_ATTRIBUTE)
     if not ret:
         print(f'Failed to remove attribute <{FILE_ATTRIBUTE}> for file \"{filepath}\".\nPlease remove it manually.')
         sys.exit(0)
+
 
 # 检测并移除影响文件改动的文件属性
 def detect_and_remove_attribute():
@@ -58,7 +63,7 @@ def detect_and_remove_attribute():
         if original_attributes & 0x01:
             remove_attribute(git_config_file_path, 0x01)
             removed_attributes.append(0x01)
-        
+
         # if file is hidden, remove hidden attribute
         if original_attributes & 0x02:
             remove_attribute(git_config_file_path, 0x02)
@@ -70,10 +75,12 @@ def detect_and_remove_attribute():
                 os.chmod(git_config_file_path, stat.S_IWUSR)
                 return ['read']
             except Exception as e:
-                print(f'Failed to change the permission of \"{git_config_file_path}\" to write.\nPlease change the permission manually.')
+                print(
+                    f'Failed to change the permission of \"{git_config_file_path}\" to write.\nPlease change the permission manually.')
                 sys.exit(0)
         else:
             return []
+
 
 # 添加最开始移除的文件属性
 def add_removed_attribute(removed_attributes):
@@ -85,5 +92,6 @@ def add_removed_attribute(removed_attributes):
             try:
                 os.chmod(git_config_file_path, stat.S_IRUSR)
             except Exception as e:
-                print(f'Failed to change the permission of \"{git_config_file_path}\" back to read.\nPlease change the permission back manually.')
+                print(
+                    f'Failed to change the permission of \"{git_config_file_path}\" back to read.\nPlease change the permission back manually.')
                 sys.exit(0)
